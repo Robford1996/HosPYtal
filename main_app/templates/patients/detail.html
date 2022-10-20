@@ -1,21 +1,19 @@
 {% extends 'base.html' %}{% block content %}
-<h1>Current Patients</h1>
+<h1>Patient Details</h1>
 
-{% for patient in patients%}
 <div class="card">
-    <a href="{% url 'detail' patient.id %}">
     <div class="card-content">
-        <span class="card-title">{{patient.name}}</span>
-        <p>Address: {{patient.address}}</p>
+        <span class="card-title">{{ patient.name }}</span>
+        <p>Address: {{ patient.address}} </p>
         <p>Email: {{patient.email}}</p>
         {% if patient.age > 17 %}
-        <p>Age : {{patient.age}}</p>
+        <p>Age: {{patient.age}} </p>
         {% else %}
         <p>Age: Minor</p>
         {% endif %}
         <p>Reason for Visit: {{patient.reason}}</p>
         <p>Check-in Date: {{patient.checkin}}</p>
     </div>
-    </a>
 </div>
-{% endfor %}{% endblock %}
+
+{% endblock %}
