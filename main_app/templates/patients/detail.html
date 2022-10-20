@@ -14,6 +14,10 @@
         <p>Reason for Visit: {{patient.reason}}</p>
         <p>Check-in Date: {{patient.checkin}}</p>
     </div>
+    <div class="card-action">
+        <a href="{% url 'patients_update' patient.id %}">Edit</a>
+        <a href="{% url 'patients_delete' patient.id %}">Delete</a>
+    </div>
 </div>
 
 {% endblock %}

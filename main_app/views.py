@@ -1,6 +1,7 @@
+from ast import Del
 from django.shortcuts import render
 # from django.views.generic import ListView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Patient
 
 
@@ -45,4 +46,14 @@ def patients_detail(request, patient_id):
 class PatientCreate(CreateView):
     model = Patient
     fields = '__all__'
+    success_url = '/patients/'
+
+
+class PatientUpdate(UpdateView):
+    model = Patient
+    fields = ('name', 'age', 'reason')
+
+
+class PatientDelete(DeleteView):
+    model = Patient
     success_url = '/patients/'
