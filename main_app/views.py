@@ -1,4 +1,6 @@
 from django.shortcuts import render
+# from django.views.generic import ListView
+from django.views.generic.edit import CreateView
 from .models import Patient
 
 
@@ -38,3 +40,9 @@ def patients_index(request):
 def patients_detail(request, patient_id):
     patient = Patient.objects.get(id=patient_id)
     return render(request, 'patients/detail.html', {'patient': patient})
+
+
+class PatientCreate(CreateView):
+    model = Patient
+    fields = '__all__'
+    success_url = '/patients/'
