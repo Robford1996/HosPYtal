@@ -9,6 +9,7 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  background-image: url(https://www.nicepng.com/png/detail/87-874647_red-cross-hospital-logo-hospital-logo-red-cross.png);
 }
 
 main {

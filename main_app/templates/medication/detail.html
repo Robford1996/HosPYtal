@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Medication Details</h1>
+
+<div class="card">
+    <a href="{% url 'medication_detail' medication.id%">
+        <div class="card-content">
+            <span>{{medication.name}}</span>
+        </div>
+        <div class="card-action">
+            <a href="{% url 'medication_update' medication.id %}">Edit Medication</a>
+            <a href="{% url 'medication_delete' medication.id %}">Delete Medication</a>
+        </div>
+    </a>
+</div>
+{% endblock %}
