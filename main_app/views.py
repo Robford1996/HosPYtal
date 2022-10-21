@@ -107,8 +107,8 @@ def signup(request):
 
 class PatientCreate(CreateView):
     model = Patient
-    fields = '__all__'
-    success_url = '/patients/'
+    fields = ['name', 'address', 'email', 'age', 'reason', 'checkin']
+    # success_url = '/patients/'
 
     def form_valid(self, form):
         form.instance.user = self.request.user

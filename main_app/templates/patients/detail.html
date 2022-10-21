@@ -86,12 +86,12 @@
         </div>
         {% endfor %}
         {% else %}
-        <h5>{{patient.name}} Already Has No Medication Available</h5>
+        <h5>{{patient.name}} Has No Medication Available</h5>
         {% endif %}
     </div>
 </div>
 {% for photo in patient.photo_set.all %}
-<img class="responsive-img card-panel" src="{{photo.url}}">
+<img class="circle responsive-img card-panel" src="{{photo.url}}">
 {% empty %}
 <div class="card-panel teal-text center-align">No Image Added</div>
 {% endfor %}

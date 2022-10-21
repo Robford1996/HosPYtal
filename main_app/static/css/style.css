@@ -6,6 +6,9 @@
 
 
 body {
+  background-image: url('https://media.istockphoto.com/vectors/abstract-geometric-medical-cross-shape-medicine-and-science-concept-vector-id940993008?k=20&m=940993008&s=612x612&w=0&h=rCRrrtzkm7aUqbzFf_ov3KF5UWgc_yDu_GAibzmVbWE=');
+  background-repeat: no-repeat;
+  background-size: cover;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
