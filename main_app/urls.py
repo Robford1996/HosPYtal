@@ -24,4 +24,6 @@ urlpatterns = [
          views.MedicationDelete.as_view(), name='medication_delete'),
     path('patients/<int:patient_id>/assoc_medication/<int:medication_id>/',
          views.assoc_medication, name='assoc_medication'),
+    path('patients/<int:patient_id>/add_photo',
+         views.add_photo, name='add_photo'),
 ]

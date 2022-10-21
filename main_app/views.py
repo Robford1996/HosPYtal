@@ -3,8 +3,13 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Patient, Medication
+from .models import Patient, Medication, Photo
 from .forms import CheckinsForm
+import uuid
+import boto3
+
+S3_BASE_URL = 'https://s3-us-east-1.amazonaws.com/'
+BUCKET = 'hospytal-photos'
 
 
 def home(request):
@@ -63,6 +68,22 @@ def add_checkins(request, patient_id):
 
 def assoc_medication(request, patient_id, medication_id):
     Patient.objects.get(id=patient_id).medication.add(medication_id)
+    return redirect('detail', patient_id=patient_id)
+
+
+def add_photo(request, patient_id):
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
+        s3 = boto3.client('s3')
+        key = uuid.uuid4().hex[:6] + \
+            photo_file.name[photo_file.name.rfind('.'):]
+        try:
+            s3.upload_fileobj(photo_file, BUCKET, key)
+            url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            photo = Photo(url=url, patient_id=patient_id)
+            photo.save()
+        except:
+            print('An error occured uploading file to S3')
     return redirect('detail', patient_id=patient_id)
 
 
