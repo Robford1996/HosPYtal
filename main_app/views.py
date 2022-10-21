@@ -1,8 +1,9 @@
 from ast import Del
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 # from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Patient
+from .forms import CheckinsForm
 
 
 def home(request):
@@ -40,7 +41,17 @@ def patients_index(request):
 
 def patients_detail(request, patient_id):
     patient = Patient.objects.get(id=patient_id)
-    return render(request, 'patients/detail.html', {'patient': patient})
+    checkins_form = CheckinsForm()
+    return render(request, 'patients/detail.html', {'patient': patient, 'checkins_form': checkins_form})
+
+
+def add_checkins(request, patient_id):
+    form = CheckinsForm(request.POST)
+    if form.is_valid():
+        new_checkins = form.save(commit=False)
+        new_checkins.patient_id = patient_id
+        new_checkins.save()
+    return redirect('detail', patient_id=patient_id)
 
 
 class PatientCreate(CreateView):
@@ -51,7 +62,8 @@ class PatientCreate(CreateView):
 
 class PatientUpdate(UpdateView):
     model = Patient
-    fields = ('name', 'age', 'reason')
+    fields = ['name', 'age', 'reason']
+    success_url = '/patients/'
 
 
 class PatientDelete(DeleteView):

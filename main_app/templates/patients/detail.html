@@ -1,6 +1,8 @@
 {% extends 'base.html' %}{% block content %}
 <h1>Patient Details</h1>
 
+<div class="row">
+    <div class="col s6">
 <div class="card">
     <div class="card-content">
         <span class="card-title">{{ patient.name }}</span>
@@ -18,6 +20,46 @@
         <a href="{% url 'patients_update' patient.id %}">Edit</a>
         <a href="{% url 'patients_delete' patient.id %}">Delete</a>
     </div>
+    </div>
 </div>
+<form action = "{% url 'add_checkins' patient.id %}" method="post">
+    {% csrf_token %}{{ checkins_form.as_p }}
+    <input type="submit" class="btn" value="Submit Pateint Check-in" />
+</form>
+<div class="col s6">
+    <table class="striped">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Notes</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for checkins in pateint.checkins_set.all %}
+            <tr>
+                <td>{{checkins.date}}</td>
+                <td>{{checkins.time}}</td>
+                <td>{{checkins.notes}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</div>
+<script>
+var dateEl = document.getElementById('id_date');
+  M.Datepicker.init(dateEl, {
+    format: 'yyyy-mm-dd',
+    defaultDate: new Date(),
+    setDefaultDate: true,
+    autoClose: true
+  });
+//   document.addEventListener('DOMContentLoaded', function() {
+//     var elems = document.querySelectorAll('.timepicker');
+//     var instances = M.Timepicker.init(elems);
+    
+//   });
+</script>
 
 {% endblock %}

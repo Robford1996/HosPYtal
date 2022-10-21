@@ -11,4 +11,6 @@ urlpatterns = [
          views.PatientUpdate.as_view(), name='patients_update'),
     path('patients/<int:pk>/delete/',
          views.PatientDelete.as_view(), name='patients_delete'),
+    path('patients/<int:patient_id>/add_checkins/',
+         views.add_checkins, name='add_checkins')
 ]

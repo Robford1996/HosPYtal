@@ -18,3 +18,18 @@ def __str__(self):
 
 def get_absolute_url(self):
     return reverse('detail', kwargs={'patient_id': self.id})
+
+
+class Checkins(models.Model):
+    date = models.DateField('Checked Date')
+    time = models.TimeField('Checked Time')
+    notes = models.CharField(max_length=50)
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+
+
+def __str__(self):
+    return f"{self.date} at {self.time} with notes: {self.notes}"
+
+
+class Meta:
+    ordering = ['-date']
