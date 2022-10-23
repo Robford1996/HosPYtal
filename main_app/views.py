@@ -1,5 +1,3 @@
-from ast import Del
-from distutils.log import error
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
@@ -11,8 +9,8 @@ from .forms import CheckinsForm
 import uuid
 import boto3
 
-S3_BASE_URL = 'https://s3-us-east-1.amazonaws.com/'
-BUCKET = 'hospytal-photos'
+S3_BASE_URL = 'https://s3.us-east-1.amazonaws.com'
+BUCKET = 'hospytal'
 
 
 def home(request):
@@ -82,7 +80,7 @@ def add_photo(request, patient_id):
             photo_file.name[photo_file.name.rfind('.'):]
         try:
             s3.upload_fileobj(photo_file, BUCKET, key)
-            url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            url = f"{S3_BASE_URL}/{BUCKET}/{key}"
             photo = Photo(url=url, patient_id=patient_id)
             photo.save()
         except:
@@ -108,10 +106,10 @@ def signup(request):
 class PatientCreate(CreateView):
     model = Patient
     fields = ['name', 'address', 'email', 'age', 'reason', 'checkin']
-    # success_url = '/patients/'
+    success_url = '/patients/'
 
     def form_valid(self, form):
-        form.instance.user = self.request.user
+        form.instance.users = self.request.user
         return super().form_valid(form)
 
 

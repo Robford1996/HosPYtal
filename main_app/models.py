@@ -8,6 +8,9 @@ class Medication(models.Model):
     name = models.CharField(max_length=50)
     use = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.name
+
     def get_absolute_url(self):
         return reverse('medication_detail', kwargs={'pk': self.id})
 
@@ -22,13 +25,11 @@ class Patient(models.Model):
     medication = models.ManyToManyField(Medication)
     users = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.name
 
-def __str__(self):
-    return self.name
-
-
-def get_absolute_url(self):
-    return reverse('detail', kwargs={'patient_id': self.id})
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'patient_id': self.id})
 
 
 class Checkins(models.Model):
@@ -37,9 +38,8 @@ class Checkins(models.Model):
     notes = models.CharField(max_length=50)
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
 
-
-def __str__(self):
-    return f"{self.date} at {self.time} with notes: {self.notes}"
+    def __str__(self):
+        return f"{self.date} at {self.time} with notes: {self.notes}"
 
 
 class Meta:
