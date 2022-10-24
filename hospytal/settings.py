@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-# import django_heroku
+import django_heroku
 from pathlib import Path
 from decouple import config
 
@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-lc!ek@qiy(x9m*trvryna5r5+77op(110z=h_y!1rq@^gb_iay'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -129,7 +129,7 @@ LOGOUT_REDIRECT_URL = '/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# django_heroku.settings(locals())
+django_heroku.settings(locals())
 
 SECRET_KEY = config('SECRET_KEY')
 
