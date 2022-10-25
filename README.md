@@ -25,7 +25,7 @@ HosPYtal is a mock hospital geared for Doctors and Nurses to be able to keep tra
 <img src="https://user-images.githubusercontent.com/110005039/197862386-04f37512-6ac4-49f0-953d-ca7a630aa846.png">
 
 # View the App
-To see the app <a href="https://hospytal.herokuapp.com/">Click Here!<a>
+To see the app <a href="https://hospytal.herokuapp.com/" target="_blank">Click Here!<a>
 
 # Future Plans
 * Allow Doctors/Nurses to have their own profiles where they can mark they were the ones who checked in on the patient and what medication they may have given them
