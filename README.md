@@ -13,7 +13,7 @@ HosPYtal is a mock hospital geared for Doctors and Nurses to be able to keep tra
 * CSS3
 * Materialize
 
-# Features
+# Features 
 
 * HosPYtal is a full CRUD application where users can keep information on current patients
 * Users are able to create new patients to check them into the hospital and will be able to log when they checked in on them and log giving them medication. 
